@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id          String        @id @default(uuid())
+  nome        String
+  email       String        @unique
+  senha       String
+  tipo        String // "admin", "medico", "recepcionista"
+  Funcionario Funcionario[]
+}
+
+model Paciente {
+  id         String      @id @default(uuid())
+  nome       String
+  idade      Int
+  telefone   String
+  endereco   String
+  prontuario Prontuario?
+  consultas  Consulta[]
+}
+
+model Medico {
+  id              String        @id @default(uuid())
+  nome            String
+  crm             String        @unique
+  especialidade   Especialidade @relation(fields: [especialidadeId], references: [id])
+  especialidadeId String
+  telefone        String
+  consultas       Consulta[]
+}
+
+model Especialidade {
+  id      String   @id @default(uuid())
+  nome    String   @unique
+  medicos Medico[]
+}
+
+model Consulta {
+  id         String   @id @default(uuid())
+  paciente   Paciente @relation(fields: [pacienteId], references: [id])
+  pacienteId String
+  medico     Medico   @relation(fields: [medicoId], references: [id])
+  medicoId   String
+  data       DateTime
+  sala       Sala     @relation(fields: [salaId], references: [id])
+  salaId     String
+}
+
+model Sala {
+  id        String     @id @default(uuid())
+  numero    Int        @unique
+  consultas Consulta[]
+}
+
+model Prontuario {
+  id         String   @id @default(uuid())
+  paciente   Paciente @relation(fields: [pacienteId], references: [id])
+  pacienteId String   @unique
+  historico  String
+}
+
+model Funcionario {
+  id        String   @id @default(uuid())
+  nome      String
+  cargo     String // Exemplo: "Recepcionista", "Enfermeiro"
+  telefone  String
+  usuario   Usuario? @relation(fields: [usuarioId], references: [id])
+  usuarioId String?
+}
