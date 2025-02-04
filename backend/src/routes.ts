@@ -5,6 +5,7 @@ import { AuthUserController } from "./controllers/user/AuthUserController";
 
 import { CreateDoctorController } from "./controllers/doctor/CreateDoctorController";
 import { DetailDoctorController } from "./controllers/doctor/DetailDoctorController";
+import { UpdateDoctorController } from "./controllers/doctor/UpdateDoctorController";
 
 import { CreateSpecialtyController } from "./controllers/specialty/CreateSpecialtyController";
 
@@ -28,6 +29,11 @@ router.post("/doctors", (req, res, next) => {
 router.get("/doctors/detail", (req, res, next) => {
   new DetailDoctorController().handle(req, res);
 })
+router.put("/doctors/update", (req, res, next) => {
+  new UpdateDoctorController().handle(req, res);
+});
+
+
 
 //------- ROTAS ESPECIALIDADE -------//
 router.post("/specialty", (req, res, next) => {
