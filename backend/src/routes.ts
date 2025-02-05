@@ -9,6 +9,8 @@ import { UpdateDoctorController } from "./controllers/doctor/UpdateDoctorControl
 
 import { CreateSpecialtyController } from "./controllers/specialty/CreateSpecialtyController";
 
+import { CreatePatientController } from "./controllers/patient/CreatePatientController";
+
 const router = Router();
 
 //------- ROTAS USUÁRIOS -------//
@@ -34,10 +36,14 @@ router.put("/doctors/update", (req, res, next) => {
 });
 
 
-
 //------- ROTAS ESPECIALIDADE -------//
 router.post("/specialty", (req, res, next) => {
   new CreateSpecialtyController().handle(req, res);
 });
 
+
+//------- ROTAS PACIENTES -------//
+router.post("/patient", (req, res, next) => {
+  new CreatePatientController().handle(req, res);
+})
 export { router };
