@@ -10,6 +10,8 @@ import { UpdateDoctorController } from "./controllers/doctor/UpdateDoctorControl
 import { CreateSpecialtyController } from "./controllers/specialty/CreateSpecialtyController";
 
 import { CreatePatientController } from "./controllers/patient/CreatePatientController";
+import { UpdatePatientController } from "./controllers/patient/UpdatePatientController";
+
 
 const router = Router();
 
@@ -46,4 +48,9 @@ router.post("/specialty", (req, res, next) => {
 router.post("/patient", (req, res, next) => {
   new CreatePatientController().handle(req, res);
 })
+router.put("/patient/update", (req, res, next) => {
+  new UpdatePatientController().handle(req, res);
+})
+
+
 export { router };
