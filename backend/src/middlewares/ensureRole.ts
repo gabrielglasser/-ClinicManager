@@ -1,23 +1,24 @@
 import { Usuario } from "@prisma/client";
 import { Request, Response, NextFunction } from "express";
 
+
 interface CustomRequest extends Request {
     user: Usuario;
   }
   
 
-export function ensureRole(allowedRoles: string[]) {
+export function ensureRole(roles: string[]) {
   return (req: CustomRequest, res: Response, next: NextFunction) => {
-    const user = req.user;
+    const userRole = req.user?.tipo;
 
-    if (!user) {
+    if (!userRole) {
       return res.status(401).json({ error: "Usuário não autenticado" });
     }
 
-    if (!allowedRoles.includes(user.tipo)) {
+    if (!roles.includes(userRole)) {
       return res.status(403).json({ error: "Acesso negado: Usuário sem permissão" });
     }
 
-    return next();
+     next();
   };
 }

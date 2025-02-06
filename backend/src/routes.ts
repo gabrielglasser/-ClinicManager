@@ -9,10 +9,7 @@ import { UpdateDoctorController } from "./controllers/doctor/UpdateDoctorControl
 
 import { CreateSpecialtyController } from "./controllers/specialty/CreateSpecialtyController";
 
-import { CreatePatientController } from "./controllers/patient/CreatePatientController";
-import { UpdatePatientController } from "./controllers/patient/UpdatePatientController";
-import { DeletePatientController } from "./controllers/patient/DeletePatientController";
-import { DetailPatientController } from "./controllers/patient/DetailPatientController";
+import { patientsRoutes } from "./routes/patient.routes";
 
 
 const router = Router();
@@ -47,18 +44,8 @@ router.post("/specialty", (req, res, next) => {
 
 
 //------- ROTAS PACIENTES -------//
-router.post("/patient", (req, res, next) => {
-  new CreatePatientController().handle(req, res);
-})
-router.put("/patient/update", (req, res, next) => {
-  new UpdatePatientController().handle(req, res);
-})
-router.delete("/patient/delete", (req, res, next) => {
-  new DeletePatientController().handle(req, res);
-})
-router.get("/patient/detail", (req, res, next) => {
-  new DetailPatientController().handle(req, res);
-})
+
+router.use("/patient", patientsRoutes);
 
 
 export { router };
