@@ -12,6 +12,7 @@ import { CreateSpecialtyController } from "./controllers/specialty/CreateSpecial
 import { CreatePatientController } from "./controllers/patient/CreatePatientController";
 import { UpdatePatientController } from "./controllers/patient/UpdatePatientController";
 import { DeletePatientController } from "./controllers/patient/DeletePatientController";
+import { DetailPatientController } from "./controllers/patient/DetailPatientController";
 
 
 const router = Router();
@@ -54,6 +55,9 @@ router.put("/patient/update", (req, res, next) => {
 })
 router.delete("/patient/delete", (req, res, next) => {
   new DeletePatientController().handle(req, res);
+})
+router.get("/patient/detail", (req, res, next) => {
+  new DetailPatientController().handle(req, res);
 })
 
 
