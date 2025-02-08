@@ -2,7 +2,6 @@ import prismaClient from "../../prisma";
 
 class DetailConsultationService {
   async execute(id: string) {
-    console.log(id);
 
     if (!id || typeof id !== "string" || id.trim() === "") {
       throw new Error("Invalid ID provided.");
