@@ -13,6 +13,8 @@ import { CreateSpecialtyController } from "./controllers/specialty/CreateSpecial
 
 import { patientsRoutes } from "./routes/patient.routes";
 
+import { consultationsRoutes } from "./routes/consultation.routes";
+
 
 const router = Router();
 
@@ -56,6 +58,9 @@ router.post("/specialty", (req, res, next) => {
 //------- ROTAS PACIENTES -------//
 
 router.use("/patient", patientsRoutes);
+
+//------- ROTAS CONSULTAS -------//
+router.use("/consultation", consultationsRoutes);
 
 
 export { router };

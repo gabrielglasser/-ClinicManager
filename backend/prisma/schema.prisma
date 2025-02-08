@@ -48,7 +48,7 @@ model Consulta {
   pacienteId String
   medico     Medico   @relation(fields: [medicoId], references: [id])
   medicoId   String
-  data       DateTime
+  data       DateTime @default(now())
   sala       Sala     @relation(fields: [salaId], references: [id])
   salaId     String
 }
