@@ -41,7 +41,7 @@ class CreateConsultationService {
                 pacienteId: patient_id,
                 medicoId: doctor_id,
                 data: new Date(),
-                salaId: sala_id || null,
+                salaId: sala_id,
             },
         });
         return consultation;

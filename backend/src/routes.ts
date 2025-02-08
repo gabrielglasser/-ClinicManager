@@ -15,6 +15,8 @@ import { patientsRoutes } from "./routes/patient.routes";
 
 import { consultationsRoutes } from "./routes/consultation.routes";
 
+import { CreateRoomController } from "./controllers/room/CreateRoomController";
+
 
 const router = Router();
 
@@ -61,6 +63,11 @@ router.use("/patient", patientsRoutes);
 
 //------- ROTAS CONSULTAS -------//
 router.use("/consultation", consultationsRoutes);
+
+//------- ROTAS CONSULTAS -------//
+router.post("/room", (req, res, next) => {
+  new CreateRoomController().handle(req, res);
+});
 
 
 export { router };
