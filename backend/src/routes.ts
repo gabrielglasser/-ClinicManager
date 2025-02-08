@@ -7,6 +7,7 @@ import { DetailUserController } from "./controllers/user/DetailuserController";
 import { CreateDoctorController } from "./controllers/doctor/CreateDoctorController";
 import { DetailDoctorController } from "./controllers/doctor/DetailDoctorController";
 import { UpdateDoctorController } from "./controllers/doctor/UpdateDoctorController";
+import { DeleteUserController } from "./controllers/user/DeleteUserController";
 
 import { CreateSpecialtyController } from "./controllers/specialty/CreateSpecialtyController";
 
@@ -27,6 +28,10 @@ router.post("/users/login", (req, res, next) => {
 
 router.get("/users/detail", (req, res, next) => {
   new DetailUserController().handle(req, res);
+});
+
+router.delete("/users/delete", (req, res, next) => {
+  new DeleteUserController().handle(req, res);
 });
 
 //------- ROTAS MEDICO -------//
