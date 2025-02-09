@@ -2,9 +2,7 @@ import { Router } from "express";
 
 import { userRoutes } from "./routes/user.routes";
 
-import { CreateDoctorController } from "./controllers/doctor/CreateDoctorController";
-import { DetailDoctorController } from "./controllers/doctor/DetailDoctorController";
-import { UpdateDoctorController } from "./controllers/doctor/UpdateDoctorController";
+import { doctorRoutes } from "./routes/doctor.routes";
 
 import { CreateSpecialtyController } from "./controllers/specialty/CreateSpecialtyController";
 
@@ -23,15 +21,7 @@ router.use("/users", userRoutes);
 
 //------- ROTAS MEDICO -------//
 
-router.post("/doctors", (req, res, next) => {
-  new CreateDoctorController().handle(req, res);
-});
-router.get("/doctors/detail", (req, res, next) => {
-  new DetailDoctorController().handle(req, res);
-})
-router.put("/doctors/update", (req, res, next) => {
-  new UpdateDoctorController().handle(req, res);
-});
+router.use("/doctors", doctorRoutes);
 
 
 //------- ROTAS ESPECIALIDADE -------//
