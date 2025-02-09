@@ -1,13 +1,10 @@
 import { Router } from "express";
 
-import { CreateUserController } from "./controllers/user/CreateUserController";
-import { AuthUserController } from "./controllers/user/AuthUserController";
-import { DetailUserController } from "./controllers/user/DetailuserController";
+import { userRoutes } from "./routes/user.routes";
 
 import { CreateDoctorController } from "./controllers/doctor/CreateDoctorController";
 import { DetailDoctorController } from "./controllers/doctor/DetailDoctorController";
 import { UpdateDoctorController } from "./controllers/doctor/UpdateDoctorController";
-import { DeleteUserController } from "./controllers/user/DeleteUserController";
 
 import { CreateSpecialtyController } from "./controllers/specialty/CreateSpecialtyController";
 
@@ -22,21 +19,7 @@ const router = Router();
 
 //------- ROTAS USUÁRIOS -------//
 
-router.post("/users", (req, res, next) => {
-  new CreateUserController().handle(req, res);
-});
-
-router.post("/users/login", (req, res, next) => {
-  new AuthUserController().handle(req, res);
-});
-
-router.get("/users/detail", (req, res, next) => {
-  new DetailUserController().handle(req, res);
-});
-
-router.delete("/users/delete", (req, res, next) => {
-  new DeleteUserController().handle(req, res);
-});
+router.use("/users", userRoutes);
 
 //------- ROTAS MEDICO -------//
 
